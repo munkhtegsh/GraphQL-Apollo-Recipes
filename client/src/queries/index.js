@@ -8,7 +8,7 @@ export const GET_ALL_RECIPES = gql`
       instructions
       category
       likes
-      createdDate
+      createDate
     }
   }
 `
