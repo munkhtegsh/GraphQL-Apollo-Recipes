@@ -10,8 +10,8 @@ const User = require('./models/User');
 const {graphiqlExpress, graphqlExpress} = require('apollo-server-express');
 const {makeExecutableSchema} = require('graphql-tools');
 
-const  {resolvers} = require('./resolvers');
 const {typeDefs} = require('./schema');
+const  {resolvers} = require('./resolvers');
 
 // Create schema
 const schema = makeExecutableSchema({
@@ -29,10 +29,11 @@ mongoose
 // Initialize application
 const app = express();
 
-app.use('/graphiql', graphqlExpress({endpointURL: '/graphql'}));
+// Create GraphQL application
+app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}));
 
 // Connect schemas with GraphQL
-app.use('/graphql', graphqlExpress({
+app.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
   context: {
     Recipe, 
