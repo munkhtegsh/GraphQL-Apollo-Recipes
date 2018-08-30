@@ -24,9 +24,18 @@ exports.typeDefs = `
     getAllRecipes: [Recipe]
   }
 
+  type Token {
+    token: String!
+  }
+
   type Mutation {
     addRecipe(name: String!, description: String!, category: String!,
     instructions: String!, username: String): Recipe
+
+    signupUser(username: String!, email: String!, password: String!): Token
+
   }
+
+
 `;
 
