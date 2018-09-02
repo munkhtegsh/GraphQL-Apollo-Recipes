@@ -7,7 +7,7 @@ const inititialState = {
   password: '',
 } 
 class Signin extends React.Component {
-  state = {...inititialState};
+  state = {...inititialState}
 
   handleChange = (event) => {
     const {name, value} = event.target;
@@ -22,11 +22,15 @@ class Signin extends React.Component {
 
   handleSubmit = (event, signinUser) => {
     event.preventDefault();
-    signinUser().then(data => {
-      console.log(data)
+    signinUser().then(({data}) => {
+      console.log(data);
+
+      localStorage.setItem('token', data.signinUser.token);
+      this.clearState();
+
     });
 
-    this.clearState();
+
   }
 
   validateForm = () => {
