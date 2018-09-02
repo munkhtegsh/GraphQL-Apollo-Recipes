@@ -68,7 +68,6 @@ class Signup extends React.Component {
             </form>
             )
           }}
-
         </Mutation>
       </div>
     )
