@@ -36,6 +36,14 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
+// Set up JWT authentication middleware
+app.use(async(req, res, next) => {
+  console.log(req.headers)
+  const token = req.headers['authorization'];
+  console.log(token);
+  next();
+})
+
 // Create GraphQL application
 app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}));
 
