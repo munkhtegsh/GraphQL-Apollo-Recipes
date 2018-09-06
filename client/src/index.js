@@ -5,6 +5,7 @@ import './index.css';
 import App from './components/App';
 import Signin from './components/Auth/Signin';
 import Signup from './components/Auth/Signup';
+import withSession from './components/withSession';
 
 import ApolloClient from 'apollo-boost'; 
 import { ApolloProvider } from 'react-apollo';
@@ -42,11 +43,13 @@ const Root = () => (
       <Redirect to="/" />
      </Switch>
   </Router>
-)
+);
+
+const RootWithSession = withSession(Root);
 
 // Repaced app with Root 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Root />  
+    <RootWithSession />  
   </ApolloProvider>,
 document.getElementById('root'));

@@ -12,8 +12,25 @@ exports.resolvers = {
     getAllRecipes: async(root, args, { Recipe }) => {
       const allRecipes = await Recipe.find();
       return allRecipes;
-    }
+    },
+
+    getCurrentUser: async (root, args, {getCurrentUser, User}) => {
+      if (!getCurrentUser) {
+        return null;
+      }
+
+      const user = await user.findOne({username: currentUser.username})
+        .populate({
+          path: 'favorite',
+          module: 'Recipe'
+        })
+
+      return user;
+    },
+
   },
+
+
 
   Mutation: {
     addRecipe: async (root, { name, description, category, 
