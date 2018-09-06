@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 require('dotenv').config({path: 'variables.env'});
 
 const Recipe = require('./models/Recipe');
@@ -40,7 +41,15 @@ app.use(cors(corsOptions));
 app.use(async(req, res, next) => {
   console.log(req.headers)
   const token = req.headers['authorization'];
-  console.log(token);
+  if (token !== "null") {
+    try {
+      const currentUser = await jwt.verify(token, process.env.SECRET);
+      console.log(currentUser)
+    } catch(err) {
+      console.log(err);
+    }
+  }
+  console.log(token, typeof token);
   next();
 })
 
