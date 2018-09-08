@@ -19,7 +19,7 @@ exports.resolvers = {
         return null;
       }
 
-      const user = await user.findOne({username: currentUser.username})
+      const user = await User.findOne({username: currentUser.username})
         .populate({
           path: 'favorite',
           module: 'Recipe'

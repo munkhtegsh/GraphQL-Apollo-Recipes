@@ -8,6 +8,7 @@ const withSession = Component => props => (
     {({data, loading}) => {
       if (loading) return null;
       
+      console.log(data)
       return (
         <Component {...props} query={GET_CURRENT_USER}/>
       )
