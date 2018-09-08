@@ -1,6 +1,7 @@
 import React from 'react';
 import {Mutation} from 'react-apollo';
 import {SIGNIN_USER} from '../../queries';
+import {withRouter} from 'react-router-dom';
 
 const inititialState = {
   username: '',
@@ -27,6 +28,7 @@ class Signin extends React.Component {
 
       localStorage.setItem('token', data.signinUser.token);
       this.clearState();
+      this.props.history.push('/');
 
     });
 
@@ -70,4 +72,4 @@ class Signin extends React.Component {
   }
 }
 
-export default Signin;
+export default withRouter(Signin);
