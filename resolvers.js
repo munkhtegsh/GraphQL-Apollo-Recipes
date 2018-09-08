@@ -14,8 +14,8 @@ exports.resolvers = {
       return allRecipes;
     },
 
-    getCurrentUser: async (root, args, {getCurrentUser, User}) => {
-      if (!getCurrentUser) {
+    getCurrentUser: async (root, args, {currentUser, User}) => {
+      if (!currentUser) {
         return null;
       }
 
